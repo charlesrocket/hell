@@ -2,6 +2,9 @@
 name = "hell"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/charlesrocket/hell"
+authors = ["charlesrocket"]
+readme = "README.md"
 
 [dependencies]
 bootloader = "0.10.13"
