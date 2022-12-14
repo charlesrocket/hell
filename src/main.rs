@@ -23,3 +23,18 @@ pub extern "C" fn _start() -> ! {
 
     loop {}
 }
+
+#[cfg(test)]
+fn test_runner(tests: &[&dyn Fn()]) {
+    println!("Running {} tests", tests.len());
+    for test in tests {
+        test();
+    }
+}
+
+#[test_case]
+fn simple_assertion() {
+    print!("simple assertion... ");
+    assert_eq!(1, 1);
+    println!("[ok]");
+}
