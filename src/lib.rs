@@ -25,7 +25,6 @@ pub fn exit_qemu(exit_code: QemuExitCode) {
     }
 }
 
-
 pub trait Testable {
     fn run(&self);
 }
