@@ -1,24 +1,25 @@
 #![no_std]
 #![no_main]
+#![reexport_test_harness_main = "test_main"]
+#![feature(custom_test_frameworks)]
+#![test_runner(crate::test_runner)]
 
 use core::panic::PanicInfo;
 
-static HESHER: &[u8] = b"HESHER WAS HERE!";
+mod vga_buffer;
 
 #[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
     loop {}
 }
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    let vga_buffer = 0xb8000 as *mut u8;
+    println!("{}", "HESHER WAS HERE!");
 
-    for (i, &byte) in HESHER.iter().enumerate() {
-        unsafe {
-            *vga_buffer.offset(i as isize * 2) = byte;
-            *vga_buffer.offset(i as isize * 2 + 1) = 0xb;
-        }
-    }
+    #[cfg(test)]
+    test_main();
+
     loop {}
 }
