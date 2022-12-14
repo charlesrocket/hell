@@ -9,28 +9,16 @@ use hell::println;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    println!("{}", "HESHER WAS HERE!");
-
-    #[cfg(test)]
     test_main();
-
     loop {}
 }
 
-#[cfg(not(test))]
-#[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    println!("{}", info);
-    loop {}
-}
-
-#[cfg(test)]
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
     hell::test_panic_handler(info)
 }
 
 #[test_case]
-fn simple_assertion() {
-    assert_eq!(1, 1);
+fn test_println() {
+    println!("test_println output");
 }
