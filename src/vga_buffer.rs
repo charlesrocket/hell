@@ -14,6 +14,7 @@ struct ScreenChar {
     color_code: ColorCode,
 }
 
+#[repr(transparent)]
 struct Buffer {
     chars: [[Volatile<ScreenChar>; BUFFER_WIDTH]; BUFFER_HEIGHT],
 }
@@ -78,7 +79,6 @@ impl Writer {
         }
     }
 
-    pub fn write_string(&mut self, s: &str) {
         for byte in s.bytes() {
             match byte {
                 0x20..=0x7e | b'\n' => self.write_byte(byte),
