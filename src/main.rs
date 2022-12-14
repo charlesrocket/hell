@@ -9,7 +9,7 @@ use hell::println;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    println!("{}", "HESHER WAS HERE!");
+    println!("HESHER WAS HERE!");
 
     hell::init();
 
