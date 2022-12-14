@@ -45,8 +45,8 @@ pub enum Color {
 struct ColorCode(u8);
 
 impl ColorCode {
-    fn new(foreground: Color, background: Color) -> ColorCode {
-        ColorCode((background as u8) << 4 | (foreground as u8))
+    fn new(foreground: Color, background: Color) -> Self {
+        Self((background as u8) << 4 | (foreground as u8))
     }
 }
 
